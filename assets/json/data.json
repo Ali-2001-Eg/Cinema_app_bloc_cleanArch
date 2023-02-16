@@ -1,0 +1,30 @@
+[
+  {
+    "brand": "KenGen Power",
+    "date": "12-8-2020",
+    "status": false,
+    "due": "1280.00",
+    "more": "Pay before",
+    "img": "assets/images/brand1.png",
+    "id": "158844125205"
+  },
+  {
+    "brand": "Tech Power",
+    "date": "2-11-2018",
+    "status": false,
+    "due": "1350.00",
+    "more": "You must pay now",
+    "img": "assets/images/brand2.png",
+    "id": "9412044012545"
+  },
+  {
+    "brand": "Airtel Power",
+    "date": "16-7-2020",
+    "status": false,
+    "due": "3400.00",
+    "more": "Pay now and get discount ",
+    "img": "assets/images/brand3.png",
+    "id": "94465441545"
+
+  }
+]
