@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:payment_app/pages/myHomePage.dart';
-import 'package:get/get.dart';
+import 'package:payment_app/core/services/services_locator.dart';
+import 'package:payment_app/core/utils/app_strings.dart';
+import 'movies/presentation/screens/movies_screen.dart';
+
 
 void main() {
+  ServicesLocator().init();
   runApp(const MyApp());
 }
 
@@ -12,16 +15,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Flutter Demo',
+    return MaterialApp(
+      title: AppStrings.appName,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: Colors.grey.shade900,
+
       ),
-      home:  MyHomePage(),
+      home: const MoviesScreen(),
     );
   }
 }
-
-
-

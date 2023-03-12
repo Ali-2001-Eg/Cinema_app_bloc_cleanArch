@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:payment_app/components/colors.dart';
+
+import '../components/colors.dart';
+
 
 class CustomButton extends StatelessWidget {
   final Color? backgroundColor;
