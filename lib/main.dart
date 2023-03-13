@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:payment_app/core/services/services_locator.dart';
 import 'package:payment_app/core/utils/app_strings.dart';
+import 'package:payment_app/core/utils/home_page/bottom_nav_bar.dart';
+import 'package:payment_app/tvs/presentation/screens/tvs_screen.dart';
 import 'movies/presentation/screens/movies_screen.dart';
 
 
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.grey.shade900,
 
       ),
-      home: const MoviesScreen(),
+      home: const HomePage(),
     );
   }
 }

@@ -3,30 +3,34 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:payment_app/core/services/services_locator.dart';
 import 'package:payment_app/core/utils/app_strings.dart';
-import 'package:payment_app/movies/presentation/components/now_playing_component.dart';
-import 'package:payment_app/movies/presentation/controller/movies_bloc.dart';
-import 'package:payment_app/movies/presentation/controller/movies_event.dart';
-import '../components/popular_components.dart';
-import '../components/top_rated_component.dart';
+import 'package:payment_app/movies/presentation/screens/movies_screen.dart';
+import 'package:payment_app/tvs/presentation/components/on_air_component.dart';
+import 'package:payment_app/tvs/presentation/components/popular_component.dart';
+import 'package:payment_app/tvs/presentation/components/top_rated_component.dart';
+import 'package:payment_app/tvs/presentation/controller/tvs_bloc.dart';
+import 'package:payment_app/tvs/presentation/controller/tvs_event.dart';
 
-class MoviesScreen extends StatelessWidget {
-  const MoviesScreen({Key? key}) : super(key: key);
+
+
+class TvsScreen extends StatelessWidget {
+  const TvsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: BlocProvider(
-        create: (context) => sl<MoviesBloc>()
-          ..add(GetNowPlayingMoviesEvent())
-          ..add(GetPopularMoviesEvent())
-          ..add(GetTopRatedMoviesEvent()),
+        create: (context) => sl<TvsBloc>()
+          ..add(GetTvsOnAirEvent())
+          ..add(GetTvsPopularEvent())
+          ..add(GetTvsTopRatedEvent()),
+
         child: Scaffold(
           body: SingleChildScrollView(
-            key: const Key('movieScrollView'),
+            key: const Key('tvsScrollView'),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const NowPlayingComponent(),
+                const OnAirTvsComponent(),
                 Container(
                   margin: const EdgeInsets.fromLTRB(16.0, 24.0, 16.0, 8.0),
                   child: Row(
@@ -43,6 +47,8 @@ class MoviesScreen extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           /// TODO : NAVIGATION TO POPULAR SCREEN
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const MoviesScreen(),));
+
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -61,7 +67,7 @@ class MoviesScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const PopularMoviesComponent(),
+                const PopularTvsComponent(),
                 Container(
                   margin: const EdgeInsets.fromLTRB(
                     16.0,
@@ -83,6 +89,7 @@ class MoviesScreen extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           /// TODO : NAVIGATION TO Top Rated Movies Screen
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const MoviesScreen(),));
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -101,7 +108,7 @@ class MoviesScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const TopRatedMoviesComponent(),
+                const TopRatedTvsComponent(),
 
               ],
             ),

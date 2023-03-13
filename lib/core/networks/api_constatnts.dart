@@ -16,5 +16,11 @@ class ApiConstants{
   static String recommendationPath(int movieId) => '$baseUrl/movie/$movieId/recommendations?api_key=$apiKey';
 
   static String imageUrl (String path)=> '$imageBaseUrl$path';
+  
+  static const  String tvOnAirPath = '$baseUrl/tv/on_the_air?api_key=$apiKey';
+
+  static const String tvPopularPath = '$baseUrl/tv/popular?api_key=$apiKey';
+
+  static const String tvTopRatedPath = '$baseUrl/tv/top_rated?api_key=$apiKey';
 }
 //https://image.tmdb.org/t/p/w500/nmGWzTLMXy9x7mKd8NKPLmHtWGa.jpg
