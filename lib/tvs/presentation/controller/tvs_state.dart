@@ -7,10 +7,10 @@ class TvsStates extends Equatable {
   final List<Tv> TvsonAir;
   final RequestState onAirRequestState;
   final String onAirMessage;
-  final List<Tv> TvsPopular;
+  final List<Tv> popularTvs;
   final RequestState popularRequestState;
   final String popularMessage;
-  final List<Tv> TvsTopRated;
+  final List<Tv> topRatedTvs;
   final RequestState topRatedRequestState;
   final String topRatedMessage;
 
@@ -18,10 +18,10 @@ class TvsStates extends Equatable {
     this.TvsonAir = const [],
     this.onAirRequestState = RequestState.loading,
     this.onAirMessage = '',
-    this.TvsPopular = const [],
+    this.popularTvs = const [],
     this.popularRequestState = RequestState.loading,
     this.popularMessage = '',
-    this.TvsTopRated = const [],
+    this.topRatedTvs = const [],
     this.topRatedRequestState = RequestState.loading,
     this.topRatedMessage = '',
   });
@@ -31,10 +31,10 @@ class TvsStates extends Equatable {
         TvsonAir,
         onAirRequestState,
         onAirMessage,
-        TvsPopular,
+        popularTvs,
         popularRequestState,
         popularMessage,
-        TvsTopRated,
+        topRatedTvs,
         topRatedRequestState,
         topRatedMessage,
       ];
@@ -54,10 +54,10 @@ class TvsStates extends Equatable {
       TvsonAir: TvsonAir ?? this.TvsonAir,
       onAirRequestState: onAirRequestState ?? this.onAirRequestState,
       onAirMessage: onAirMessage ?? this.onAirMessage,
-      TvsPopular: TvsPopular ?? this.TvsPopular,
+      popularTvs: TvsPopular ?? this.popularTvs,
       popularRequestState: popularRequestState ?? this.popularRequestState,
       popularMessage: popularMessage ?? this.popularMessage,
-      TvsTopRated: TvsTopRated ?? this.TvsTopRated,
+      topRatedTvs: TvsTopRated ?? this.topRatedTvs,
       topRatedRequestState: topRatedRequestState ?? this.topRatedRequestState,
       topRatedMessage: topRatedMessage ?? this.topRatedMessage,
     );

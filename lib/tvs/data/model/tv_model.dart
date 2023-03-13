@@ -3,6 +3,7 @@ import '../../domain/entities/tv.dart';
 class TvModel extends Tv {
   const TvModel({
     required super.backdropPath,
+    required super.firstAirDate,
     required super.id,
     required super.name,
     required super.overview,
@@ -17,5 +18,6 @@ class TvModel extends Tv {
         overview: json['overview'],
         voteAverage: json['vote_average'].toInt(),
         generIds: List<int>.from(json['genre_ids'].map((e) => e)),
+        firstAirDate: json['first_air_date'],
       );
 }

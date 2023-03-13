@@ -6,6 +6,7 @@ import 'package:payment_app/movies/presentation/controller/movies_bloc.dart';
 import 'package:payment_app/movies/presentation/controller/movies_states.dart';
 import 'package:payment_app/tvs/presentation/controller/tvs_bloc.dart';
 import 'package:payment_app/tvs/presentation/controller/tvs_state.dart';
+import 'package:payment_app/tvs/presentation/screens/top_rated_details_tvs_screen.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../core/networks/api_constatnts.dart';
 import '../../../core/utils/enums.dart';
@@ -18,7 +19,6 @@ class TopRatedTvsComponent extends StatelessWidget {
     return BlocBuilder<TvsBloc, TvsStates>(
       buildWhen: (previous, current) => previous.topRatedRequestState != current.topRatedRequestState,
       builder: (context, state) {
-        print(state.topRatedRequestState);
         switch (state.topRatedRequestState) {
           case RequestState.loading:
             return const SizedBox(
@@ -37,14 +37,14 @@ class TopRatedTvsComponent extends StatelessWidget {
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  itemCount: state.TvsTopRated.length,
+                  itemCount: state.topRatedTvs.length,
                   itemBuilder: (context, index) {
-                    final tvs = state.TvsTopRated[index];
+                    final tvs = state.topRatedTvs[index];
                     return Container(
                       padding: const EdgeInsets.only(right: 8.0),
                       child: InkWell(
                         onTap: () {
-                          /// TODO : NAVIGATE TO  MOVIE DETAILS
+                         Navigator.push(context, MaterialPageRoute(builder: (context) =>const TopRatedDetailsTvsScreen(),));
                         },
                         child: ClipRRect(
                           borderRadius:

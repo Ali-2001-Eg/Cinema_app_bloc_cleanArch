@@ -7,8 +7,10 @@ class Tv extends Equatable {
   final String overview;
   final int voteAverage;
   final List<int> generIds;
+  final String firstAirDate;
 
   const Tv({
+    required this.firstAirDate,
     required this.backdropPath,
     required this.id,
     required this.name,
@@ -18,12 +20,6 @@ class Tv extends Equatable {
   });
 
   @override
-  List<Object?> get props => [
-        backdropPath,
-        id,
-        name,
-        overview,
-        voteAverage,
-        generIds,
-      ];
+  List<Object?> get props =>
+      [backdropPath, id, name, overview, voteAverage, generIds, firstAirDate];
 }

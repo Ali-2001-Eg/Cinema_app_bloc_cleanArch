@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:payment_app/movies/presentation/controller/movies_bloc.dart';
 import 'package:payment_app/movies/presentation/controller/movies_states.dart';
+import 'package:payment_app/movies/presentation/screens/top_rated_details_screen.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../core/networks/api_constatnts.dart';
 import '../../../core/utils/enums.dart';
@@ -42,7 +43,7 @@ class TopRatedMoviesComponent extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 8.0),
                       child: InkWell(
                         onTap: () {
-                          /// TODO : NAVIGATE TO  MOVIE DETAILS
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const TopRatedDetailsScreen(),));
                         },
                         child: ClipRRect(
                           borderRadius:

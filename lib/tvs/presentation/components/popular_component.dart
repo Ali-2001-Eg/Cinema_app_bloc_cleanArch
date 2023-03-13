@@ -7,6 +7,7 @@ import 'package:shimmer/shimmer.dart';
 import '../../../core/networks/api_constatnts.dart';
 import '../../../core/utils/enums.dart';
 import '../controller/tvs_bloc.dart';
+import '../screens/popular_details_tvs_screen.dart';
 
 class PopularTvsComponent extends StatelessWidget {
   const PopularTvsComponent({Key? key}) : super(key: key);
@@ -35,14 +36,14 @@ class PopularTvsComponent extends StatelessWidget {
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  itemCount: state.TvsPopular.length,
+                  itemCount: state.popularTvs.length,
                   itemBuilder: (context, index) {
-                    final tvs = state.TvsPopular[index];
+                    final tvs = state.popularTvs[index];
                     return Container(
                       padding: const EdgeInsets.only(right: 8.0),
                       child: InkWell(
                         onTap: () {
-                          /// TODO : NAVIGATE TO  MOVIE DETAILS
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const PopularTvsScreen(),));
                         },
                         child: ClipRRect(
                           borderRadius:
