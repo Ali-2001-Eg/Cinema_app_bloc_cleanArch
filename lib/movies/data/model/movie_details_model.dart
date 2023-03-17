@@ -18,7 +18,7 @@ class MovieDetailsModel extends MovieDetails {
         //how to receive list ob object
         geners: List<GenersModel>.from(
             json['genres'].map((e) => GenersModel.fromJson(e))),
-        backdropPath: json['backdrop_path'],
+        backdropPath: json['backdrop_path'] ?? '/nmGWzTLMXy9x7mKd8NKPLmHtWGa.jpg',
         id: json['id'],
         overview: json['overview'],
         releaseDate: json['release_date'],

@@ -9,6 +9,8 @@ import 'package:payment_app/tvs/presentation/components/popular_component.dart';
 import 'package:payment_app/tvs/presentation/components/top_rated_component.dart';
 import 'package:payment_app/tvs/presentation/controller/tvs_bloc.dart';
 import 'package:payment_app/tvs/presentation/controller/tvs_event.dart';
+import 'package:payment_app/tvs/presentation/screens/popular_details_tvs_screen.dart';
+import 'package:payment_app/tvs/presentation/screens/top_rated_details_tvs_screen.dart';
 
 
 
@@ -26,6 +28,7 @@ class TvsScreen extends StatelessWidget {
 
         child: Scaffold(
           body: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
             key: const Key('tvsScrollView'),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +50,7 @@ class TvsScreen extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           /// TODO : NAVIGATION TO POPULAR SCREEN
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const MoviesScreen(),));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const PopularTvsScreen(),));
 
                         },
                         child: Padding(
@@ -89,7 +92,7 @@ class TvsScreen extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           /// TODO : NAVIGATION TO Top Rated Movies Screen
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const MoviesScreen(),));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const TopRatedDetailsTvsScreen(),));
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),

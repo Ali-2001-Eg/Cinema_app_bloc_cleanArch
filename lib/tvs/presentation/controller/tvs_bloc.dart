@@ -53,15 +53,7 @@ class TvsBloc extends Bloc<TvsEvent, TvsStates> {
           popularRequestState: RequestState.loaded,
           TvsPopular: r,
         )));
-    // final result = await getTvsOnAirUseCase(const NoParameters());
-    // // print(result);
-    // result.fold((l) => state.copyWith(
-    //     onAirMessage: l.message,
-    //     onAirRequestState: RequestState.error
-    // ), (r) => state.copyWith(
-    //   onAirRequestState: RequestState.loaded,
-    //   TvsonAir: r,
-    // ));
+
   }
 
   FutureOr<void> _getTopRatedTvs(GetTvsTopRatedEvent event, Emitter<TvsStates> emit) async{

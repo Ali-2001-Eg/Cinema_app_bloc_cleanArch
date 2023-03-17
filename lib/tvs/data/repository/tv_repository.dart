@@ -1,9 +1,14 @@
 import 'package:dartz/dartz.dart';
 import 'package:payment_app/core/error/exceptions.dart';
 import 'package:payment_app/core/error/failure.dart';
+import 'package:payment_app/movies/domain/usecases/get_recommendation_usecase.dart';
 import 'package:payment_app/tvs/domain/entities/tv.dart';
+import 'package:payment_app/tvs/domain/entities/tv_details.dart';
+import 'package:payment_app/tvs/domain/entities/tv_revommendations.dart';
 import 'package:payment_app/tvs/domain/repository/base_tv_repository.dart';
+import 'package:payment_app/tvs/domain/usecases/get_tv_details_usecase.dart';
 
+import '../../domain/usecases/get_tv_recommendataions_usecase.dart';
 import '../data_source/tv_remote_data_source.dart';
 
 
@@ -48,5 +53,29 @@ class TvRepository extends BaseTvRepository{
       return Left(ServerFailure(e.errorMessageModel.statusMessage));
     }
   }
+
+  @override
+  Future<Either<Failure, TvDetails>> getTvDetails(TvDetailsParameters tvDetailsParameters) async {
+    // TODO: implement getTvDetails
+    final result = await baseTvRemoteDataSource.getTvDetails(tvDetailsParameters);
+    try{
+      return Right(result);
+    }on ServerException catch(e){
+      return Left(ServerFailure(e.errorMessageModel.statusMessage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<TvRecommendations>>> getTvRecommendations(TvRecommendationParameters parameters) async{
+    final result = await baseTvRemoteDataSource.getTvRecommendations(parameters);
+    // print(result);
+    try{
+      return Right(result);
+    }on ServerException catch(e){
+      return Left(ServerFailure(e.errorMessageModel.statusMessage));
+    }
+  }
+
+
 
 }

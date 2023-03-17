@@ -9,6 +9,7 @@ import 'package:payment_app/movies/presentation/controller/movies_bloc.dart';
 import 'package:payment_app/movies/presentation/controller/movies_states.dart';
 import 'package:payment_app/movies/presentation/screens/movie_detail_screen.dart';
 import 'package:payment_app/tvs/presentation/controller/tvs_state.dart';
+import 'package:payment_app/tvs/presentation/screens/tv_details_screen.dart';
 
 import '../../../core/networks/api_constatnts.dart';
 import '../../../core/utils/enums.dart';
@@ -43,15 +44,18 @@ class OnAirTvsComponent extends StatelessWidget {
               child: CarouselSlider(
                 options: CarouselOptions(
                   height: 400.0,
-                  viewportFraction: 1.0,
+                  viewportFraction: 1,
                   onPageChanged: (index, reason) {},
+                  autoPlayAnimationDuration: const Duration(seconds: 3),
+                  autoPlay: true,
                 ),
                 items: state.TvsonAir.map(
                       (item) {
                     return GestureDetector(
-                      key: const Key('openMovieMinimalDetail'),
+                      key: const Key('openTvMinimalDetail'),
                       onTap: () {
-                        // Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetailScreen(id: item.id),));
+                        // print (item.id);
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => TvDetailsScreen(id: item.id),));
                       },
                       child: Stack(
                         children: [
@@ -77,7 +81,7 @@ class OnAirTvsComponent extends StatelessWidget {
                               height: 560.0,
                               imageUrl: ApiConstants.imageUrl(
                                   item.backdropPath!),
-                              fit: BoxFit.cover,
+                              fit: BoxFit.fill,
                             ),
                           ),
                           Align(

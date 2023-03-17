@@ -34,6 +34,7 @@ class TopRatedTvsComponent extends StatelessWidget {
               child: SizedBox(
                 height: 170.0,
                 child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),

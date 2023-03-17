@@ -66,7 +66,7 @@
 //           decoration: const BoxDecoration(
 //               image: DecorationImage(
 //                   image: AssetImage('assets/images/background.png'),
-//                   fit: BoxFit.cover)),
+//                   fit: BoxFit.fill)),
 //         ));
 //   }
 //
@@ -214,7 +214,7 @@
 //                                   borderRadius: const BorderRadius.all(
 //                                       Radius.circular(10)),
 //                                   image: DecorationImage(
-//                                     fit: BoxFit.cover,
+//                                     fit: BoxFit.fill,
 //                                     image: AssetImage(
 //                                         _controller.list[index]['img']),
 //                                   ),

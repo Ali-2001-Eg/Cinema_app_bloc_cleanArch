@@ -39,6 +39,7 @@ class PopularTvsScreen extends StatelessWidget {
                     backgroundColor: Colors.black,
                   ),
                   body: ListView.separated(
+                    physics: const BouncingScrollPhysics(),
                     itemCount: state.popularTvs.length,
                     separatorBuilder: (context, index) => SizedBox(
                       height: MediaQuery.of(context).size.height / 20,

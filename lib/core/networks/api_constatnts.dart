@@ -13,7 +13,11 @@ class ApiConstants{
 
   static String movieDetails(int movieId) => '$baseUrl/movie/$movieId?api_key=$apiKey';
 
+  static String tvDetails(int tvId) => '$baseUrl/tv/$tvId?api_key=$apiKey';
+
   static String recommendationPath(int movieId) => '$baseUrl/movie/$movieId/recommendations?api_key=$apiKey';
+
+  static String recommendationTvsPath(int tvId) => '$baseUrl/tv/$tvId/recommendations?api_key=$apiKey';
 
   static String imageUrl (String path)=> '$imageBaseUrl$path';
   

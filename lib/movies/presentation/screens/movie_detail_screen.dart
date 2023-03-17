@@ -6,14 +6,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:payment_app/core/networks/api_constatnts.dart';
 import 'package:payment_app/core/utils/app_strings.dart';
+import 'package:payment_app/core/utils/home_page/bottom_nav_bar.dart';
 import 'package:payment_app/movies/presentation/controller/movie_details_bloc.dart';
+import 'package:payment_app/movies/presentation/screens/movies_screen.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../core/services/services_locator.dart';
 import '../../../core/utils/dummy (1).dart';
 import '../../../core/utils/enums.dart';
 import '../../domain/entities/movie_details.dart';
 import '../../domain/entities/recommendation.dart';
-
 
 class MovieDetailScreen extends StatelessWidget {
   final int id;
@@ -24,11 +25,11 @@ class MovieDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => sl<MovieDetailsBloc>()
-        ..add(GetMovieDetailsEvent( id: id))
-        ..add(GetMovieRecommendationEvent(id:id)),
+        ..add(GetMovieDetailsEvent(id: id))
+        ..add(GetMovieRecommendationEvent(id: id)),
       lazy: false,
       child: const SafeArea(
-        child:  Scaffold(
+        child: Scaffold(
           body: MovieDetailContent(),
         ),
       ),
@@ -52,10 +53,18 @@ class MovieDetailContent extends StatelessWidget {
             );
           case RequestState.loaded:
             return CustomScrollView(
-              key: const Key('movieDetailScrollView'),
               slivers: [
                 SliverAppBar(
                   pinned: true,
+                  actions: [
+                    IconButton(
+                        onPressed: () => Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const HomePage(),
+                            )),
+                        icon: const Icon(Icons.home))
+                  ],
                   expandedHeight: 250.0,
                   flexibleSpace: FlexibleSpaceBar(
                     background: FadeIn(
@@ -80,8 +89,8 @@ class MovieDetailContent extends StatelessWidget {
                         child: CachedNetworkImage(
                           width: MediaQuery.of(context).size.width,
                           imageUrl: ApiConstants.imageUrl(
-                              state.movieDetails!.backdropPath),
-                          fit: BoxFit.cover,
+                              state.movieDetails!.backdropPath!),
+                          fit: BoxFit.fill,
                         ),
                       ),
                     ),
@@ -144,7 +153,7 @@ class MovieDetailContent extends StatelessWidget {
                                   Text(
                                     '(${state.movieDetails!.voteAverage})',
                                     style: const TextStyle(
-                                      fontSize: 1.0,
+                                      fontSize: 1,
                                       fontWeight: FontWeight.w500,
                                       letterSpacing: 1.2,
                                     ),
@@ -193,7 +202,7 @@ class MovieDetailContent extends StatelessWidget {
                     child: FadeInUp(
                       from: 20,
                       duration: const Duration(milliseconds: 500),
-                      child:const  Text(
+                      child: const Text(
                         AppStrings.moreLikeThis,
                         style: TextStyle(
                           fontSize: 16.0,
@@ -244,48 +253,57 @@ class MovieDetailContent extends StatelessWidget {
 
   Widget _showRecommendations() {
     return BlocBuilder<MovieDetailsBloc, MovieDetailsState>(
-
       builder: (context, state) {
         final recommendations = state.recommendations;
         return SliverGrid(
-        delegate: SliverChildBuilderDelegate(
-              (context, index) {
-            final recommendation = state.recommendations[index];
-            return FadeInUp(
-              from: 20,
-              duration: const Duration(milliseconds: 500),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(4.0)),
-                child: CachedNetworkImage(
-                  imageUrl: ApiConstants.imageUrl(recommendation.backdropPath!),
-                  placeholder: (context, url) => Shimmer.fromColors(
-                    baseColor: Colors.grey[850]!,
-                    highlightColor: Colors.grey[800]!,
-                    child: Container(
-                      height: 170.0,
-                      width: 120.0,
-                      decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(8.0),
+          delegate: SliverChildBuilderDelegate(
+            (context, index) {
+              final recommendation = state.recommendations[index];
+              return FadeInUp(
+                from: 20,
+                duration: const Duration(milliseconds: 500),
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+                  child: GestureDetector(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              MovieDetailScreen(id: recommendation.id),
+                        )),
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          ApiConstants.imageUrl(recommendation.backdropPath!),
+                      placeholder: (context, url) => Shimmer.fromColors(
+                        baseColor: Colors.grey[850]!,
+                        highlightColor: Colors.grey[800]!,
+                        child: Container(
+                          height: 170.0,
+                          width: 120.0,
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
                       ),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                      height: 180.0,
+                      fit: BoxFit.fill,
                     ),
                   ),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                  height: 180.0,
-                  fit: BoxFit.cover,
                 ),
-              ),
-            );
-          },
-          childCount: recommendations.length,
-        ),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          mainAxisSpacing: 8.0,
-          crossAxisSpacing: 8.0,
-          childAspectRatio: 0.7,
-          crossAxisCount: 3,
-        ),
-      );
+              );
+            },
+            childCount: recommendations.length,
+          ),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            mainAxisSpacing: 8.0,
+            crossAxisSpacing: 8.0,
+            childAspectRatio: 0.7,
+            crossAxisCount: 3,
+          ),
+        );
       },
     );
   }

@@ -38,6 +38,8 @@ class TopRatedDetailsTvsScreen extends StatelessWidget {
                   backgroundColor: Colors.black,
                 ),
                 body: ListView.separated(
+                  physics: const BouncingScrollPhysics(),
+
                   itemCount: state.topRatedTvs.length,
                   separatorBuilder: (context, index) => SizedBox(
                     height: MediaQuery.of(context).size.height / 20,

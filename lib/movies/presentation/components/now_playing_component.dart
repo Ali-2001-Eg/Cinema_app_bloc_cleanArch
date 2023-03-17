@@ -74,7 +74,7 @@ class NowPlayingComponent extends StatelessWidget {
                              child: CachedNetworkImage(
                                height: 560.0,
                                imageUrl: ApiConstants.imageUrl(item.backdropPath),
-                               fit: BoxFit.cover,
+                               fit: BoxFit.fill,
                              ),
                            ),
                            Align(
